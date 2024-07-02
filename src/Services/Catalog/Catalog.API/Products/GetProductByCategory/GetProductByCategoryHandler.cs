@@ -9,7 +9,8 @@ internal class GetProductByCategoryQueryHandler(
     ILogger<GetProductByCategoryQueryHandler> logger)
     : IQueryHandler<GetProductByCategoryQuery, GetProductByCategoryResult>
 {
-    public async Task<GetProductByCategoryResult> Handle(GetProductByCategoryQuery query, CancellationToken cancellationToken)
+    public async Task<GetProductByCategoryResult> Handle(GetProductByCategoryQuery query,
+        CancellationToken cancellationToken)
     {
         logger.LogInformation("GetProductByCategoryQueryHandler.Handle called with {@Query}", query);
 

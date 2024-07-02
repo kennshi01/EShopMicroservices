@@ -9,12 +9,13 @@ public record CreateProductCommand(
 
 public record CreateProductResult(Guid Id);
 
-internal class CreateProductCommandHandler(IDocumentSession session) : ICommandHandler<CreateProductCommand, CreateProductResult>
+internal class CreateProductCommandHandler(IDocumentSession session)
+    : ICommandHandler<CreateProductCommand, CreateProductResult>
 {
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
         // create Product entity from command object
-        
+
         var product = new Models.Product
         {
             Name = command.Name,
@@ -23,11 +24,11 @@ internal class CreateProductCommandHandler(IDocumentSession session) : ICommandH
             ImageFile = command.ImageFile,
             Price = command.Price
         };
-        
+
         // save to db
         session.Store(product);
         await session.SaveChangesAsync(cancellationToken);
-        
+
         // return CreatedProduct result
         return new CreateProductResult(product.Id);
     }
