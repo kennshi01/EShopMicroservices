@@ -1,9 +1,12 @@
 ﻿services:
   catalogdb:
-    image: postgres:latest
+    image: postgres
     
   basketdb:
     image: postgres
+  
+  distributedcache:
+    image: redis
   
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
