@@ -3,7 +3,7 @@
     image: postgres
     
   basketdb:
-    image: postgres
+    image: postgres:latest
   
   distributedcache:
     image: redis
