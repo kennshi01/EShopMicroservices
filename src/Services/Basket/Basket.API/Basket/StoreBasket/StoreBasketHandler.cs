@@ -17,10 +17,11 @@ public class StoreBasketCommandHandler(IBasketRepository repository) : ICommandH
 {
     public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
     {
-        ShoppingCart shoppingCart = command.Cart;
+        // TODO: communicate with Discount.grpc and calculate latest prices of product
         
+        
+        // Store basket in db
         await repository.StoreBasket(command.Cart, cancellationToken);
-        // TODO: update cache
 
         return new StoreBasketResult(command.Cart.UserName);
     }
