@@ -10,6 +10,6 @@ public class InternalServerException : Exception
     {
         Details = details;
     }
-    
+
     public string? Details { get; }
 }

@@ -26,7 +26,7 @@ internal class CreateProductCommandHandler(IDocumentSession session)
     public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
         // create Product entity from command object
-        var product = new Models.Product
+        var product = new Product
         {
             Name = command.Name,
             Category = command.Category,

@@ -45,7 +45,7 @@ public class Order : Aggregate<OrderId>
         BillingAddress = billingAddress;
         Payment = payment;
         Status = status;
-        
+
         AddDomainEvent(new OrderUpdateEvent(this));
     }
 
@@ -61,10 +61,7 @@ public class Order : Aggregate<OrderId>
     public void Remove(ProductId productId)
     {
         var orderItem = _orderItems.FirstOrDefault(x => x.ProductId == productId);
-        
-        if (orderItem is not null)
-        {
-            _orderItems.Remove(orderItem);
-        }
+
+        if (orderItem is not null) _orderItems.Remove(orderItem);
     }
 }

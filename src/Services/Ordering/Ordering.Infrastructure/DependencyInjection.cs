@@ -5,13 +5,14 @@ namespace Ordering.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,
+        IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("Database");
-        
+
         // Add Services to the container
         // EntityFramework contexts...
-        
+
         return services;
     }
 }

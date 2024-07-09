@@ -19,16 +19,14 @@ public class LoggingBehavior<TRequest, TResponse>(ILogger<LoggingBehavior<TReque
         timer.Start();
 
         var response = await next();
-        
+
         timer.Stop();
         var timeTaken = timer.Elapsed;
         if (timeTaken.Seconds > 3)
-        {
             logger.LogWarning("[PERFORMANCE] The request {Request} took {TimeTaken}",
                 typeof(TRequest), timeTaken.Seconds);
-        }
-        
-        logger.LogInformation("[END] Handled {Request} with {Response}",typeof(TRequest), typeof(TResponse));
+
+        logger.LogInformation("[END] Handled {Request} with {Response}", typeof(TRequest), typeof(TResponse));
 
         return response;
     }

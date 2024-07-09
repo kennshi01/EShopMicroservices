@@ -11,10 +11,10 @@ public class CachedBasketRepository(IBasketRepository repository, IDistributedCa
         var cachedBasket = await cache.GetStringAsync(userName, cancellationToken);
         if (!string.IsNullOrEmpty(cachedBasket))
             return JsonSerializer.Deserialize<ShoppingCart>(cachedBasket)!;
-        
+
         // Else perform a get operation from db
         var basket = await repository.GetBasket(userName, cancellationToken);
-        
+
         // Store in cache data for future retrieves
         await cache.SetStringAsync(userName, JsonSerializer.Serialize(basket), cancellationToken);
         return basket;
@@ -23,7 +23,7 @@ public class CachedBasketRepository(IBasketRepository repository, IDistributedCa
     public async Task<ShoppingCart> StoreBasket(ShoppingCart basket, CancellationToken cancellationToken = default)
     {
         await repository.StoreBasket(basket, cancellationToken);
-        
+
         // store in cache
         await cache.SetStringAsync(basket.UserName, JsonSerializer.Serialize(basket), cancellationToken);
 
